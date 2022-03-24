@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "Sayali1",
+      "class": "16th",
+      "email": "saya@gmail.com",
+      "mobile": "3456789012"
+    },
+    {
+      "id": 2,
+      "name": "Pranav",
+      "class": "19th",
+      "email": "pranav@gmail.com",
+      "mobile": "9076415645"
+    },
+    {
+      "id": 3,
+      "name": "Parth",
+      "class": "13th",
+      "email": "parth@123",
+      "mobile": "3456789012"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

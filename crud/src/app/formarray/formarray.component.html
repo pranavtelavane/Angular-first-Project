@@ -1,0 +1,65 @@
+<form [formGroup]="form" (ngSubmit)="onsubmit">
+    <label for="name" class="label label-info" style="margin: 5px;">Name</label>
+    <input type="text" id="name" name="name" formControlName="name">
+    <label for="surname" class="label label-info" style="margin: 5px;">Surname</label>
+    <input type="text" id="surname" name="name" formControlName="surname">
+    <label for="class" class="label label-info" style="margin: 5px;">class</label>
+    <input type="text" id="class" name="class" formControlName="class">
+    <span for="college" class="label label-info" style="margin: 5px;">College</span>
+    <input type="text" id="college" name="college" formControlName="college">
+
+
+
+    <!-- <div>
+        <label class="control-label" for="Country">Country:</label>
+        <select multiple formControlName="country" *ngIf="getCountries()"  
+            class="form-control input-lg" id="country" >
+            <option value="0">Select Country</option>
+            <option *ngFor="let country of getCountries()" value={{country.id}}>{{country.name}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="States">States:</label>
+        <select   
+            class="form-control input-lg" id="state">
+            <option *ngIf="!selectedCountry" value="0">Select State</option>
+            <option *ngFor="let state of getStates()" value={{state.id}}>{{state.name}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="City">City:</label>
+        <select  class="form-control input-lg" id="city">
+        <option *ngIf="!selectedState" value="0">Select City</option>
+        <option *ngFor="let city of getCity()" value= {{city.id}}>{{city.name}}</option>
+        </select>
+        </div> -->
+
+
+
+
+
+
+
+
+        <div formArrayName="skills">
+            <div *ngFor="let skill of skills.controls; let i=index">
+                <div [formGroupName]="i">
+                    {{i}}
+                    skill name :
+                    <input type="text" formControlName="skill">
+                    exp:
+                    <input type="text" formControlName="exp" style="margin: 5px;" class="mb-3">
+
+                    <button class="btn btn-danger" (click)="removeskill(i)">Remove</button>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger mb-3 btn-block" style="margin: 5px;"
+            (click)="onsubmit()">Submit</button>
+        <button type="button" class="btn btn-success mb-2 btn-block" (click)="addskills()">Add</button>
+</form>
+
+
+<!-- {{this.skillsform.value | json}} -->
