@@ -3,9 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { FormarrayComponent } from './formarray/formarray.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 
 const routes: Routes = [
+  {
+    path:'',redirectTo:'login', pathMatch:'full'
+  },
+  {
+    path:'signup', component : SignupComponent
+  },
   {
     path : 'login', component : LoginComponent
   },
@@ -13,7 +20,7 @@ const routes: Routes = [
     path : 'dashboard',canActivate: [AuthGuard], component : StudentDashboardComponent 
   },
   {
-    path : 'form', component : FormarrayComponent
+    path : 'form', canActivate: [AuthGuard], component : FormarrayComponent
   }
 ];
 

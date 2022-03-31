@@ -1,65 +1,135 @@
 <form [formGroup]="form" (ngSubmit)="onsubmit">
-    <label for="name" class="label label-info" style="margin: 5px;">Name</label>
-    <input type="text" id="name" name="name" formControlName="name">
-    <label for="surname" class="label label-info" style="margin: 5px;">Surname</label>
-    <input type="text" id="surname" name="name" formControlName="surname">
-    <label for="class" class="label label-info" style="margin: 5px;">class</label>
-    <input type="text" id="class" name="class" formControlName="class">
-    <span for="college" class="label label-info" style="margin: 5px;">College</span>
-    <input type="text" id="college" name="college" formControlName="college">
-
-
-
-    <!-- <div>
-        <label class="control-label" for="Country">Country:</label>
-        <select multiple formControlName="country" *ngIf="getCountries()"  
-            class="form-control input-lg" id="country" >
-            <option value="0">Select Country</option>
-            <option *ngFor="let country of getCountries()" value={{country.id}}>{{country.name}}</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label" for="States">States:</label>
-        <select   
-            class="form-control input-lg" id="state">
-            <option *ngIf="!selectedCountry" value="0">Select State</option>
-            <option *ngFor="let state of getStates()" value={{state.id}}>{{state.name}}</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label" for="City">City:</label>
-        <select  class="form-control input-lg" id="city">
-        <option *ngIf="!selectedState" value="0">Select City</option>
-        <option *ngFor="let city of getCity()" value= {{city.id}}>{{city.name}}</option>
-        </select>
-        </div> -->
-
-
-
-
-
-
-
-
-        <div formArrayName="skills">
-            <div *ngFor="let skill of skills.controls; let i=index">
-                <div [formGroupName]="i">
-                    {{i}}
-                    skill name :
-                    <input type="text" formControlName="skill">
-                    exp:
-                    <input type="text" formControlName="exp" style="margin: 5px;" class="mb-3">
-
-                    <button class="btn btn-danger" (click)="removeskill(i)">Remove</button>
-                </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="name" class="label label-info" style="margin: 5px;">Name</label>
+            <input type="text" id="name" formControlName="country" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['country'].errors }"/>
+            <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+                <span *ngIf="f['country'].errors['required']">
+                    Please enter correct Country
+                </span>
+            </div>
+                <!-- <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                    <span *ngIf="f['name'].errors['required']">
+                      Please enter your name
+                    </span>
+                  </div> -->
+        </div>
+        <div class="col-3">
+            <label for="surname" class="label label-info" style="margin: 5px;">Surname</label>
+            <input type="text" id="surname" name="name" formControlName="surname" class="form-control"
+                [ngClass]="{'is-invalid': submitted && f['surname'].errors }" />
+            <div *ngIf="submitted && f['surname'].errors" class="invalid-feedback">
+                <span *ngIf="f['surname'].errors['required']">
+                    Please enter correct Surname
+                </span>
             </div>
         </div>
-        <button type="submit" class="btn btn-danger mb-3 btn-block" style="margin: 5px;"
-            (click)="onsubmit()">Submit</button>
-        <button type="button" class="btn btn-success mb-2 btn-block" (click)="addskills()">Add</button>
+        <div class="col-3">
+            <label for="class" class="label label-info" style="margin: 5px;">class</label>
+            <input type="text" id="class" name="class" formControlName="class" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['class'].errors }" />
+            <div *ngIf="submitted && f['class'].errors" class="invalid-feedback">
+                <span *ngIf="f['class'].errors['required']">
+                    Please enter correct class
+                </span>
+            </div>
+        </div>
+        <div class="col-3">
+            <label for="college" class="label label-info" style="margin: 5px;">College</label>
+            <input type="text" id="college" name="college" formControlName="college" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['college'].errors }" />
+            <div *ngIf="submitted && f['college'].errors" class="invalid-feedback">
+                <span *ngIf="f['college'].errors['required']">
+                    Please enter correct College
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-3">
+        <div class="col-4">
+            <label class="control-label" for="Country">Country:</label>
+            <select formControlName="country" class="form-control input-lg" id="country" (change)="onSelect($event)"
+                [ngClass]="{ 'is-invalid': submitted && f['country'].errors }">
+                <option value="">Select Country</option>
+                <option *ngFor="let country of countries" value="{{country.name}}">{{country.name}}</option>
+               
+            </select>
+            <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+                <span *ngIf="f['country'].errors['required']">
+                    Please enter correct Country
+                </span>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <label class="control-label" for="States">States:</label>
+            <select formControlName="state" class="form-control input-lg" (change)="Select($event)" id="state"
+                [ngClass]="{ 'is-invalid': submitted && f['state'].errors }">
+                <option value="">Select State</option>
+                <option *ngFor="let state of states" value="{{state.name}}">{{state.name}}</option>
+               
+            </select>
+            <div *ngIf="submitted && f['state'].errors" class="invalid-feedback">
+                <span *ngIf="f['state'].errors['required']">
+                    Please enter correct States
+                </span>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <label class="control-label" for="City">City:</label>
+            <select formControlName="city" class="form-control input-lg" id="city"
+                [ngClass]="{ 'is-invalid': submitted && f['city'].errors }">
+                <option value="">Select City</option>
+                <option *ngFor="let city of city" value="{{city.name}}">{{city.name}}</option>
+                
+            </select>
+            <div *ngIf="submitted && f['city'].errors" class="invalid-feedback">
+                <span *ngIf="f['city'].errors['required']">
+                    Please enter correct City
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div formArrayName="skills">
+        <div *ngFor="let skill of skills.controls; let i=index">
+            <div [formGroupName]="i">
+                {{i+1}}
+                skill name :
+                <input type="text" formControlName="skill"
+                   >
+                <!-- <div *ngIf="submitted && f['skill'].errors" class="invalid-feedback">
+                    <span *ngIf="f['skill'].errors['required']">
+                        Please enter correct skill name
+                    </span>
+                </div> -->
+                exp:
+                <input type="text" formControlName="exp" style="margin: 5px;" class="mb-3"
+                    >
+                <!-- <div *ngIf="submitted && f['exp'].errors" class="invalid-feedback">
+                    <span *ngIf="f['exp'].errors['required']">
+                        Please enter correct exp
+                    </span>
+                </div> -->
+                <button class="btn btn-danger" (click)="removeskill(i)">Remove</button>
+            </div>
+        </div>
+    </div>
+    <div class="float-end mx-5">
+        <button type="submit" class="btn btn-danger mb-3 btn-block mx-1" (click)="onsubmit()">Submit</button>
+        <button type="button" class="btn btn-success mb-3 btn-block" (click)="addskills()">Add</button>
+    </div>
 </form>
+
+
 
 
 <!-- {{this.skillsform.value | json}} -->

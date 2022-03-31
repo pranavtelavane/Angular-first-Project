@@ -9,13 +9,15 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { FormarrayComponent } from './formarray/formarray.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentDashboardComponent,
     LoginComponent,
-    FormarrayComponent
+    FormarrayComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
