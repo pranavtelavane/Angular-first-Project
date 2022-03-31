@@ -136,16 +136,6 @@ export class StudentDashboardComponent implements OnInit {
     //debugger
     this.data = localStorage.getItem('x');
     this.data = JSON.parse(this.data);
-
-
-    // for(let i=0;i<this.data[0].length;i++){
-    // if(this.data[0][1] == null || this.data[0][1] == null){
-    //   console.log(true);
-    // }
-    // else{
-    //   console.log(false);
-    // }
-    // }
    // debugger
     // for (let i = 0; i < this.data[0].length; i++) {
     //   debugger
