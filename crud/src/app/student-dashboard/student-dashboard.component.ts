@@ -68,40 +68,57 @@ export class StudentDashboardComponent implements OnInit {
 
   onFileSelect(event: any) {
     //debugger;
-    // let af = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']
+    let xlsx = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    let xls = 'application/vnd.ms-excel'
+    // debugger;
     // if (event.target.files.length > 0) {
-    //   // //     const file = event.target.files[0];
-    // if (!_.includes(af, event.target.files.type)) {
-    //         alert('Only EXCEL Docs Allowed!');
-    //       } else {
-    //         this.fileInputLabel = this.file.name;
-    //         this.studentValue.get('myfile').setValue(file);
-    //       }
-    //     }
-
-    this.file = event.target.files[0];
-    let fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(this.file);
-    fileReader.onload = (e) => {
-      this.arrayBuffer = fileReader.result;
-      var data = new Uint8Array(this.arrayBuffer);
-      var arr = new Array();
-      for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-      var bstr = arr.join("");
-      var workbook = XLSX.read(bstr, { type: "binary" });
-      var first_sheet_name = workbook.SheetNames[0];
-      var worksheet = workbook.Sheets[first_sheet_name];
-      console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
-     // debugger
-      var arraylist = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      this.filelist = arraylist;
-      // console.log(this.filelist);
+    //   const file = event.target.files[0];
 
 
+    //  if (!_.includes(af, event.target.files.type)) {
+    //     alert('Only EXCEL Docs Allowed!');
+    //     return ;
+    //   } else {
+    //     this.fileInputLabel = this.file.name;
+    //     // this.studentValue.get('myfile').setValue(file);
+    //   }
 
+    // }
+    var type = event.target.files[0].type;
+
+    if (type != xlsx && type != xls) {
+      debugger;
+      alert("Please upload only pdf file..!");
+      event.target.value = null;
+      return;
     }
 
+    else {
+      this.file = event.target.files[0];
+      let fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(this.file);
+      fileReader.onload = (e) => {
+        this.arrayBuffer = fileReader.result;
+        var data = new Uint8Array(this.arrayBuffer);
+        var arr = new Array();
+        for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+        var bstr = arr.join("");
+        var workbook = XLSX.read(bstr, { type: "binary" });
+        var first_sheet_name = workbook.SheetNames[0];
+        var worksheet = workbook.Sheets[first_sheet_name];
+        console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
+        // debugger
+        var arraylist = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+        this.filelist = arraylist;
+        // console.log(this.filelist);
+
+
+
+      }
+    }
   }
+
+
 
 
   onFormSubmit() {
@@ -111,9 +128,10 @@ export class StudentDashboardComponent implements OnInit {
 
     // this.getdata();
     console.log("------");
+
     this.filelist.forEach((element: any) => {
       //alert(JSON.stringify(element))
-     // debugger
+      // debugger
       if ((element.Containernumber != null && element.Containernumber != '') && (element.Port != null && element.Port != '') && (element.shipmentdata != null && element.shipmentdata != '') && (element.Containernumber.match(this.myfile))) {
         this.filelist1.push(element);
       }
@@ -127,16 +145,16 @@ export class StudentDashboardComponent implements OnInit {
     console.log(this.error)
     XLSX.utils.json_to_sheet(this.error)
     this.success = this.filelist.length - this.error.length;
-   // alert("Success:" + this.success + ",Failed:" + this.error.length);
+    // alert("Success:" + this.success + ",Failed:" + this.error.length);
     console.log(this.success);
-     this.exportToExcel();
+    this.exportToExcel();
   }
 
   getdata() {
     //debugger
     this.data = localStorage.getItem('x');
     this.data = JSON.parse(this.data);
-   // debugger
+    // debugger
     // for (let i = 0; i < this.data[0].length; i++) {
     //   debugger
     //   if (this.data[0][i]['Container number'] == '' || this.data[0][i]['Port'] == '' || this.data[0][i]['shipment data'] == '') {
@@ -244,23 +262,32 @@ export class StudentDashboardComponent implements OnInit {
     this.studentObj.class = this.studentValue.value.class;
     this.studentObj.email = this.studentValue.value.email;
     this.studentObj.mobile = this.studentValue.value.mobile;
-    this.api.putStudent(this.studentObj, this.studentObj.id).subscribe({
-      next: (v) => {
-        console.log(v)
-      },
-      // error: (e) => {
-      //   console.log(e);
-      //   alert("Error")
-      // },
-      complete: () => {
-        console.log('Student data updated succssfully')
-        alert("Student data updated succssfully!")
-        this.getStudent();
-        this.studentValue.reset();
-        this.showSave();
-        this.studentObj.id = 0;
-      }
-    })
+    this.submitted = true;
+    if (this.studentValue.invalid) {
+      return;
+    }
+    else
+    {
+      this.api.putStudent(this.studentObj, this.studentObj.id).subscribe({
+        next: (v) => {
+          console.log(v)
+        },
+        // error: (e) => {
+        //   console.log(e);
+        //   alert("Error")
+        // },
+        complete: () => {
+          console.log('Student data updated succssfully')
+          alert("Student data updated succssfully!")
+          this.getStudent();
+          this.studentValue.reset();
+          this.showSave();
+          this.studentObj.id = 0;
+        }
+        
+      })
+    }
+    
   }
 
   showSave() {

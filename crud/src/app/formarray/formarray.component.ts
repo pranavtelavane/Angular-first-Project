@@ -52,6 +52,7 @@ export class FormarrayComponent implements OnInit {
   }
 
   onsubmit() {
+    debugger
     this.submitted = true;
     if (this.form.invalid) {
       return;
