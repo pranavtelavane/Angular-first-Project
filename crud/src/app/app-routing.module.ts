@@ -30,6 +30,16 @@ const routes: Routes = [
   {
     path : 'info', component : InfoComponent
   }
+
+  // {
+  //   path: 'transport',
+  //   loadChildren: () => import().then(m => m.APIBindingModule),
+  //   data: {
+  //     title: 'Transport'
+  //   },
+  //   canActivate: [AuthGuard]
+  // }
+
 ];
 
 @NgModule({

@@ -11,13 +11,13 @@ import { State } from './state';
 })
 export class FormarrayComponent implements OnInit {
 
-  form !: FormGroup;
+  form : FormGroup;
 
   submitted = false;
 
-  countries !: Country[];
-  states !: State[];
-  city !: City[];
+  countries : Country[];
+  states : State[];
+  city : City[];
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -38,8 +38,8 @@ export class FormarrayComponent implements OnInit {
 
   newskill(): FormGroup {
     return this.fb.group({
-      skill: '',
-      exp: '',
+      skill: [''],
+      exp: [''],
     })
   }
 

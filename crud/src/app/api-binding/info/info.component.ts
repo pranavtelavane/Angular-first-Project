@@ -11,21 +11,24 @@ export class InfoComponent implements OnInit {
 
   newform : FormGroup;
   list: any = [];
-  value: any;
+  refno: any;
+  moduleid: any;
 
   constructor(private fb: FormBuilder, private Service: ApiService) { }
 
   ngOnInit(): void {
     this.newform = this.fb.group({
-      search: ['']
+      refno: [''],
+      moduleid: ['']
     })
   }
 
   search() {
-    this.value = this.newform.controls["search"].value;
-    console.log(this.newform.controls["search"].value);
+    this.refno = this.newform.controls["refno"].value;
+    this.moduleid = this.newform.controls["moduleid"].value;
+    console.log(this.newform.controls["refno"].value);
     debugger
-    this.Service.getData(this.value).subscribe(res => {
+    this.Service.getData(this.refno,this.moduleid).subscribe(res => {
       debugger
       this.list = res;
       console.log(this.list);

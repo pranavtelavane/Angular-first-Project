@@ -1,7 +1,9 @@
 <div>
 <form [formGroup]="newform">
     <div class="input-group">
-        <input type="num" class="form-control rounded" formControlName="search" placeholder="Search" aria-label="Search"
+        <input type="num" class="form-control rounded" formControlName="refno" placeholder="Ref number" aria-label="Search"
+            aria-describedby="search-addon" />
+            <input type="num" class="form-control rounded" formControlName="moduleid" placeholder="Module ID" aria-label="Search"
             aria-describedby="search-addon" />
         <button type="button" class="btn btn-outline-primary"  (click)="search()">search</button>
     </div>

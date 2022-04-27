@@ -50,9 +50,9 @@ export class ApiService {
     
   }
 
-  getData(refno: any) {
+  getData(refno: any,moduleid: any) {
     debugger
     return this._http.get<any>
-      ("https://apic.nlpmuat.com/nlpm/sandbox/get-transaction-list/?moduleid=3&userid=&fromdate=&todate=&refno=" + refno + "&serviceproviderid=&bankcode=")
+      ("https://apic.nlpmuat.com/nlpm/sandbox/get-transaction-list/?moduleid=" + moduleid + "&userid=&fromdate=&todate=&refno=" + refno + "&serviceproviderid=&bankcode=")
   }
 }
