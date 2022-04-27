@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { FormarrayComponent } from './formarray/formarray.component';
 import { SignupComponent } from './signup/signup.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { APIBindingModule } from './api-binding/api-binding.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { SignupComponent } from './signup/signup.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    APIBindingModule
   
   ],
   exports:[StudentDashboardComponent],

@@ -1,0 +1,27 @@
+<div>
+<form [formGroup]="newform">
+    <div class="input-group">
+        <input type="num" class="form-control rounded" formControlName="search" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" />
+        <button type="button" class="btn btn-outline-primary"  (click)="search()">search</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+            <th>Ref No</th>
+            <th>PROVIDER NAME</th>
+            <th>Status</th>
+            
+          </tr>
+          </thead>
+          <tbody>
+              <!-- <tr> -->
+        <tr *ngFor="let group of list">
+        <td>{{group.REF_NO}}</td>
+        <td>{{group.PROVIDER_NAME}}</td>
+        <td>{{group.Status}}</td>
+        </tr>
+          </tbody>
+    </table>
+    </form>
+</div>

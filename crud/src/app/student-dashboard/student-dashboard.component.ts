@@ -20,7 +20,7 @@ export class StudentDashboardComponent implements OnInit {
   @ViewChild('UploadFileInput', { static: false })
   uploadFileInput!: ElementRef;
   fileInputLabel: any;
-  file !: File;
+  file : File;
   arrayBuffer: any;
   filelist: any;
   filelist1: Array<any> = [];
@@ -29,7 +29,7 @@ export class StudentDashboardComponent implements OnInit {
   error: any[] = [];
 
   //formsubmit!: boolean;
-  studentValue!: FormGroup
+  studentValue : FormGroup
   submitted = false;
 
   studentObj: StudentModel = new StudentModel;

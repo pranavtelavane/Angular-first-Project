@@ -1,0 +1,30 @@
+<form>
+    <select class="select-menu"  name="bind" >
+  <option value="0" [disabled]="true"> --Select-- </option>
+  <option *ngFor="let group of set" value="{{group.brand}}">{{group.brand}}</option>
+  </select>
+  </form>
+  <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search here">
+    </div>
+  <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+        <th>id</th>
+        <th>Mobile</th>
+        <th>Price</th>
+        <th>Brand</th>
+        <th>Rating</th>
+      </tr>
+      </thead>
+      <tbody>
+          <!-- <tr> -->
+    <tr *ngFor="let group of set | filter : searchText">
+    <td>{{group.id}}</td>
+    <td>{{group.title}}</td>
+    <td>{{group.price}}</td>
+    <td>{{group.brand}}</td>
+    <td>{{group.rating}}</td>
+    </tr>
+      </tbody>
+    </table>

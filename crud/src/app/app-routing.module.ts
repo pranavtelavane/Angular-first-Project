@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { APIComponent } from './api-binding/api/api.component';
+import { InfoComponent } from './api-binding/info/info.component';
 import { AuthGuard } from './auth.guard';
 import { FormarrayComponent } from './formarray/formarray.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +23,12 @@ const routes: Routes = [
   },
   {
     path : 'form', canActivate: [AuthGuard], component : FormarrayComponent
+  },
+  {
+    path : 'api', component : APIComponent
+  },
+  {
+    path : 'info', component : InfoComponent
   }
 ];
 
