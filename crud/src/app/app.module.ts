@@ -12,6 +12,7 @@ import { FormarrayComponent } from './formarray/formarray.component';
 import { SignupComponent } from './signup/signup.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { APIBindingModule } from './api-binding/api-binding.module';
+//import { CaptchaComponent } from './captcha/captcha.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { APIBindingModule } from './api-binding/api-binding.module';
     StudentDashboardComponent,
     LoginComponent,
     FormarrayComponent,
-    SignupComponent
+    SignupComponent,
+   // CaptchaComponent
   ],
   imports: [
     BrowserModule,

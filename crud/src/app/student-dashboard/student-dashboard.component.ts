@@ -18,7 +18,7 @@ export class StudentDashboardComponent implements OnInit {
 
 
   @ViewChild('UploadFileInput', { static: false })
-  uploadFileInput!: ElementRef;
+  uploadFileInput : ElementRef;
   fileInputLabel: any;
   file : File;
   arrayBuffer: any;

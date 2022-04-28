@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  login !: FormGroup
+  login : FormGroup
   submitted = false;
 
   constructor(private router: Router, private authservice: AuthService, private fb: FormBuilder, private http: HttpClient) { }
@@ -40,8 +40,6 @@ export class LoginComponent implements OnInit {
         }else{
           alert("User not found");
         }
-      },err=>{
-        alert("Something went wrong");
       })
     // var user = this.login.get('username')?.value
     // var password = this.login.get('password')?.value
@@ -56,11 +54,14 @@ export class LoginComponent implements OnInit {
 
   }
   onSubmit() {
-    this.loginf();
+    
     this.submitted = true;
 
     if (this.login.invalid) {
       return;
+    }
+    else{
+      this.loginf();
     }
   }
   get f() {

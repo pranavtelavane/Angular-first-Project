@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { APIComponent } from './api-binding/api/api.component';
 import { InfoComponent } from './api-binding/info/info.component';
 import { AuthGuard } from './auth.guard';
+//import { CaptchaComponent } from './captcha/captcha.component';
 import { FormarrayComponent } from './formarray/formarray.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -29,7 +30,10 @@ const routes: Routes = [
   },
   {
     path : 'info', component : InfoComponent
-  }
+  },
+  // {
+  //   path : 'captcha', component: CaptchaComponent
+  // }
 
   // {
   //   path: 'transport',
